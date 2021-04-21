@@ -11,33 +11,43 @@ namespace Prova_WEbApi.Controllers
     public class PessoaController : ApiController
     {
         // GET: api/Pessoa
-        public IEnumerable<Pessoa> Get()
+        public IEnumerable<Pessoas> Get()
         {
-            Pessoa pessoa = new Pessoa();
-            return pessoa.listPessoa();
+            Pessoas pessoa = new Pessoas();
+            return pessoa.ListaPessoas();
         }
 
         // GET: api/Pessoa/5
-        public Pessoa Get(int id)
+        public Pessoas Get(int id)
         {
-            Pessoa pessoa = new Pessoa();
-            return pessoa.listPessoa().Where(x=>x.Mid == id).FirstOrDefault();
+            Pessoas pessoa = new Pessoas();
+            return pessoa.ListaPessoas().Where(x=>x.Mid == id).FirstOrDefault();
         }
 
         // POST: api/Pessoa
-        public void Post([FromBody]Pessoa pessoa)
+        public List<Pessoas> Post(Pessoas pessoa)
         {
-
+            Pessoas _pessoa = new Pessoas();
+            _pessoa.Inserir(pessoa);
+            return _pessoa.ListaPessoas();
         }
 
         // PUT: api/Pessoa/5
-        public void Put(int id, [FromBody]string value)
+        public List<Pessoas> Put(int id, Pessoas pessoa)
         {
+            Pessoas _pessoa = new Pessoas();
+            _pessoa.Atualizar(id, pessoa);
+            return _pessoa.ListaPessoas();
+
         }
 
         // DELETE: api/Pessoa/5
         public void Delete(int id)
         {
+            Pessoas _pessoa = new Pessoas();
+            _pessoa.Deletar(id);
+
+
         }
     }
 }
